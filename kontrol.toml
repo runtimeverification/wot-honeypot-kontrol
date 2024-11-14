@@ -10,7 +10,7 @@ auxiliary-lemmas           = true
 
 [prove.default]
 schedule                   = 'CANCUN'
-match-test                 = 'test_wotHP'
+match-test                 = 'test_wot_isHoneyPot'
 optimize-performance       = 6
 foundry-project-root       = '.'
 verbose                    = false
