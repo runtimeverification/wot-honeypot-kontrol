@@ -8,6 +8,7 @@ import "kontrol-cheatcodes/KontrolCheats.sol";
 contract CounterTest is Test, KontrolCheats {
     function test_wotHP(address to, uint256 value) public {
         // address alice = freshAddress();
+        // vm.startPrank(alice);
 
         // WOT contract https://basescan.org/address/0x8c3ed1f4D142965D19e0DB48Ae189dd9448Ad95A
         address wot = address(0x8c3ed1f4D142965D19e0DB48Ae189dd9448Ad95A); 
@@ -21,11 +22,11 @@ contract CounterTest is Test, KontrolCheats {
         // set transferChecker address in WOT
         vm.store(wot,bytes32(uint256(8)), bytes32(uint256(uint160(wot_tc))));
         address addr_of_interest = address(0x14E136e385c79C1D0548a96bb90E9B4e9845A73F);
+        vm.store(wot_tc, bytes32(uint256(81955473079516046949633743016697847541294818689821282749996681496272635257091)), bytes32(uint256(uint160(addr_of_interest))));
         // These fields were branching during execution in transferChecker as #lookup(?STORAGE0, slot)
         // and ?STORAGE0 is set for 0x6de05152a0ec7d668ea54d8fb564fe4a68c07889.
         // They also look like mapping entries so they might be related to the msg.sender which is the address of the test contract.
         // to check a slot: cast storage 0x6de05152a0ec7d668ea54d8fb564fe4a68c07889 81955473079516046949633743016697847541294818689821282749996681496272635257091 --rpc-url https://mainnet.base.org --chain 8453
-        vm.store(wot_tc, bytes32(uint256(81955473079516046949633743016697847541294818689821282749996681496272635257091)), bytes32(uint256(uint160(addr_of_interest))));
         vm.store(wot_tc, bytes32(uint256(92176716289232067132282836272875158765230181307894676212186306738099599030314)), bytes32(0));
         vm.store(wot_tc, bytes32(uint256(114780517552515935620171773731191742103001937181785441609631115772415707507178)), bytes32(0));
         vm.store(wot_tc, bytes32(uint256(24890058885594772868082194210704315982890157730123342977540955694542831943486)), bytes32(0));
